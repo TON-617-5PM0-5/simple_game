@@ -1,0 +1,25 @@
+{
+  "name": "simple_game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TON-617-5PM0-5/simple_game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TON-617-5PM0-5/simple_game/issues"
+  },
+  "homepage": "https://github.com/TON-617-5PM0-5/simple_game#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "electron": "^38.2.0"
+  }
+}
