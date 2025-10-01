@@ -1,0 +1,36 @@
+{
+    "Products": [
+        {
+            "id": 1,
+            "name": "a bag of chips",
+            "description": "A bag of lay's chips. Tastes great!",
+            "image": "chips.png",
+            "cost": 1,
+            "max_amount": -1
+        },
+        {
+            "id": 2,
+            "name": "a big-mac",
+            "description": "One of the most know burgers in the world. costs really little amount of money!",
+            "image": "burger.png",
+            "cost": 2,
+            "max_amount": -1
+        },
+        {
+            "id": 3,
+            "name": "A manison",
+            "description": "A house, but big. I can count it's rooms!",
+            "image": "mansion.jpg",
+            "cost": 125000000,
+            "max_amount": -1
+        },
+        {
+            "id": 4,
+            "name": "Ceres",
+            "description": "Yeah, it is a planet, one of the most cheapest from known dwarf planets. Really little, but c'mon, it is your own planet!",
+            "image": "ceres.png",
+            "cost": 28000000000,
+            "max_amount": 1
+        }
+    ]
+}
