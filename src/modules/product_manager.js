@@ -1,18 +1,61 @@
-class product_manager {
+ import Product from './product.js';
+
+class ProductManager {
+    /**
+     * Balance of the account.
+     * @type {number}
+     * @private
+     */
+    #money
+    /**
+     * An html ui Builder for products.
+     * @type {Object}
+     * @private
+     */
+    #CardBuilder;
+    /**
+     * Paramtres - How to build card, how much does they cost and all that jazz.
+     * @type {Object}
+     * @private
+     */
+    #productsParameters;
+    /**
+     * Already builded cards, contains an array of products.
+     * @type {Object[]}
+     */
+    products;
 
     /**
      * Creates an instance of product_manager and create an html for products.
      * @param {Object} CardBuilder The special output to the html.
-     * @param {String} products The json of all products
      * @returns {null} Nothing
      */
     constructor(CardBuilder, products) {
-        this.CardBuilder = CardBuilder;
-        this.products = JSON.parse(products);
-        this.
+        this.#CardBuilder = CardBuilder;
     }
 
-    LookNBuild() {
-
+    /**
+     * Load products parametres for further work
+     * @param {Object} ProductLoader 
+     * @returns {ProductManager} Nothing
+     */
+    loadProducts(ProductLoader) {
+        try{
+            this.#productsParameters = ProductLoader.load();
+        }
+        catch (error){
+            console.warn(error);
+            // trying to read
+            // than notifying
+        }
     }
+
+    produceProducts() {
+        for (let i = 0; i < this.#productsParameters.Products.length; i++) { 
+            const product_data = this.#productsParameters.Products[i];
+            const HTML_representation = this.#CardBuilder.buildCard(product);
+            const product = new Product(product_data, HTML_representation);
+            product.connect_buttons();
+        }
+    }    
 }

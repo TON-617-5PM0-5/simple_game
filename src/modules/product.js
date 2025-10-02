@@ -4,46 +4,47 @@ class Product {
     #name;
     #description;
     #price;
-    #max_amount = -1; // -1 means no limit
-    html_element;
-    bought_amount = 0;
+    #maxAmount = -1; // -1 means no limit
+    HtmlElement;
+    boughtAmount = 0;
 
     /**
      * Creates an instance of Product.
-     * @param {Object} json_of_product The name of the product.
-     * @param {HTMLElement} html_element The html element of the product.
+     * @param {Object} jsonOfProduct The name of the product.
+     * @param {HTMLElement} HtmlElement The html element of the product.
      * @returns {null} Nothing
      */
-    constructor(json_of_product, html_element) {   
-        this.name = json_of_product.name;
-        this.description = json_of_product.description;
-        this.price = json_of_product.price; 
-        this.max_amount = json_of_product.max_amount;
-        this.html_element = html_element;
+    constructor(jsonOfProduct, HtmlElement) {   
+        this.#name = jsonOfProduct.name;
+        this.#description = jsonOfProduct.description;
+        this.#price = jsonOfProduct.price; 
+        this.#maxAmount = jsonOfProduct.max_amount;
+        this.HtmlElement = HtmlElement;
     }
 
     connect_buttons(){
-        let button = html_element.getElementsByClassName(buy_button_query_class)[0];
-        let input = html_element.getElementsByClassName(buy_input_query_class)[0];
+        let button = this.HtmlElement.getElementsByClassName(buy_button_query_class)[0];
+        let input = this.HtmlElement.getElementsByClassName(buy_input_query_class)[0];
 
         button.AddEventListener("click", ()=>{
             console.warn("Little serializer is not done");
             // make a serializer with product_manager
-            if (this.#max_amount == -1 || this.#max_amount > this.bought_amount + 1) {
-                this.bought_amount+=1;
-                input.value = this.bought_amount;
+            if (this.#maxAmount == -1 || this.#maxAmount > this.boughtAmount + 1) {
+                this.boughtAmount+=1;
+                input.value = this.boughtAmount;
             }
         })
         input.AddEventListener("change", ()=>{
             console.warn("Little serializer is not done");
             // make a serializer with product_manager
-            if (this.#max_amount > input.value){
-                this.bought_amount=input.value;
+            if (this.#maxAmount > input.value){
+                this.boughtAmount=input.value;
             }
             else {
-                input.value = this.#max_amount;
+                input.value = this.#maxAmount;
             }
         })
     }
 }
 
+export default Product;
