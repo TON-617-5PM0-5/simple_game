@@ -2,12 +2,6 @@
 
 export class ProductManager {
     /**
-     * Balance of the account.
-     * @type {number}
-     * @private
-     */
-    #money
-    /**
      * An html ui Builder for products.
      * @type {Object}
      * @private
@@ -56,7 +50,7 @@ export class ProductManager {
             const product_data = this.#productsParameters.Products[i];
             const HTML_representation = this.#CardBuilder.buildCard(product_data);
             const product = new Product(product_data, HTML_representation);
-            product.connect_buttons();
+            product.connectButtons();
         }
     }    
 }
