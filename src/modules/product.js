@@ -1,6 +1,7 @@
 const buy_button_query_class = "buybutton"; 
 const buy_input_query_class = "buyinput"; 
-class Product {
+export class Product {
+    #ProductManager;
     #name;
     #description;
     #price;
@@ -26,7 +27,7 @@ class Product {
         let button = this.HtmlElement.getElementsByClassName(buy_button_query_class)[0];
         let input = this.HtmlElement.getElementsByClassName(buy_input_query_class)[0];
 
-        button.AddEventListener("click", ()=>{
+        button.addEventListener("click", ()=>{
             console.warn("Little serializer is not done");
             // make a serializer with product_manager
             if (this.#maxAmount == -1 || this.#maxAmount > this.boughtAmount + 1) {
@@ -34,7 +35,7 @@ class Product {
                 input.value = this.boughtAmount;
             }
         })
-        input.AddEventListener("change", ()=>{
+        input.addEventListener("change", ()=>{
             console.warn("Little serializer is not done");
             // make a serializer with product_manager
             if (this.#maxAmount > input.value){
@@ -47,4 +48,4 @@ class Product {
     }
 }
 
-export default Product;
+//export default Product;

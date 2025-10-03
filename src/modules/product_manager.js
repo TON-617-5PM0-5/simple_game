@@ -1,6 +1,6 @@
- import Product from './product.js';
+ import { Product } from './product.js';
 
-class ProductManager {
+export class ProductManager {
     /**
      * Balance of the account.
      * @type {number}
@@ -30,7 +30,7 @@ class ProductManager {
      * @param {Object} CardBuilder The special output to the html.
      * @returns {null} Nothing
      */
-    constructor(CardBuilder, products) {
+    constructor(CardBuilder) {
         this.#CardBuilder = CardBuilder;
     }
 
@@ -39,9 +39,10 @@ class ProductManager {
      * @param {Object} ProductLoader 
      * @returns {ProductManager} Nothing
      */
-    loadProducts(ProductLoader) {
+    async loadProducts(ProductLoader) {
         try{
-            this.#productsParameters = ProductLoader.load();
+            this.#productsParameters = await ProductLoader.load();
+            return;
         }
         catch (error){
             console.warn(error);
@@ -53,9 +54,11 @@ class ProductManager {
     produceProducts() {
         for (let i = 0; i < this.#productsParameters.Products.length; i++) { 
             const product_data = this.#productsParameters.Products[i];
-            const HTML_representation = this.#CardBuilder.buildCard(product);
+            const HTML_representation = this.#CardBuilder.buildCard(product_data);
             const product = new Product(product_data, HTML_representation);
             product.connect_buttons();
         }
     }    
 }
+
+//export default ProductManager;
