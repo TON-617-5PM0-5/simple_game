@@ -1,5 +1,3 @@
-import { Product } from './product.js';
-
 /**
  * @classdesc Represent what client has bought, and counts the money
  */
@@ -16,14 +14,23 @@ class ReceiptManager {
      * @private 
      */
     #products
+    /**
+     * Give forces to control the HMTL
+     * @type {HtmlController}
+     * @private
+     */
+    #HtmlController;
     
     /**
      * Creates an instance of ReceiptManager.
      * @param {Product} products Usually is a pointer to Product manager's Product list.
+     * @param {HtmlController} HTML_controller Give forces to control the HMTL
      * @returns {ReceiptManager} I think you can guess what does the constructor return
      */
-    constructor (products) {
+    constructor (products, HTML_controller, startingMoney) {
+        this.#money = startingMoney
         this.#products = products
+        this.#HtmlController = HTML_controller;
     }
 
     /**
@@ -32,15 +39,28 @@ class ReceiptManager {
      * @param {int} to_amount bought amount will be setted to 
      * @returns {boolean} True if can buy, false otherwise
      */
-    buy(Product, to_amount){
-        const current_bought_amount = Product.getBoughtAmount();
-        const price = Product.getCost();
+    buy(product, to_amount){
+        const current_bought_amount = product.getBoughtAmount();
+        const price = product.getCost();
         const money_on_buy = (to_amount - current_bought_amount) * price;
         if (this.#money >= money_on_buy) {
             this.#money -= money_on_buy;
+            this.updateMoney()
             return true;
         }
         return false;
+    }
+
+    /**
+     * Updates UI of money through HTML_controller
+     * @return {null} Nothing
+     */
+    updateMoney(){
+        this.#HtmlController.showMoney(this.#money);
+    }
+
+    drawReceipt(){
+        
     }
 }
 

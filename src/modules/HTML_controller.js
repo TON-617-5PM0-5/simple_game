@@ -1,11 +1,34 @@
-class HtmlCardBuilder {
+const card_container_query_id = 'cards_container';
+const money_label_query_id = 'money-label';
+const receipt_table_query_id = "receipt_table";
+
+/**
+ * Singleton class to control HTML elements.
+ * @class
+ */ 
+class HtmlController {
+    /**
+     * Container in what will be built cards.
+     * @type {HTMLElement}
+     */
     buildingContainer;
+    /**
+     * Label that shows how much money was spent.
+     * @type {HTMLElement}
+     */
+    moneyLabel;
+
+    /**
+     * Creates a singleton of HtmlController.
+     * @returns {HtmlController} The instance of the singleton
+     */
     constructor(){
-        if (!HtmlCardBuilder.instance){
-            HtmlCardBuilder.instance = this;
-            this.buildingContainer = document.getElementById('cards_container');
+        if (!HtmlController.instance){
+            HtmlController.instance = this;
+            this.buildingContainer = document.getElementById(card_container_query_id);
+            this.moneyLabel = document.getElementById(money_label_query_id);
         }
-        return HtmlCardBuilder.instance
+        return HtmlController.instance
     }
 
     /**
@@ -32,6 +55,11 @@ class HtmlCardBuilder {
         return builded
     }
 
+    /**
+     * Builds a card and appends it to the building container.
+     * @param {Object} data The data of the product to build the card for.
+     * @return {HTMLElement} The built HTML element of the card.
+     */
     buildCard(data){
         const builded = this.#getLayout(data.name, data.description, data.cost, data.image);
 
@@ -42,6 +70,21 @@ class HtmlCardBuilder {
 
         return element;
     }
+
+    /**
+     * Updates the money label to show the current amount of money spent.
+     * @param {number} money The current amount of money spent.
+     * @return {null} Nothing
+     */
+    showMoney(money){
+        const formattedNumber = new Intl.NumberFormat('en-US').format(money); // this expression I have taken from outer sources
+        const result = "Spent " + formattedNumber + "$";
+        this.moneyLabel.innerHTML = result;
+    }
+
+    drawReceipt(Text){
+
+    }
 }
 //singleton
-export default new HtmlCardBuilder();
+export default new HtmlController();

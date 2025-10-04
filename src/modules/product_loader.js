@@ -1,5 +1,11 @@
 export class ProductLoader {
+    /**
+     * Path to file which is filled with json string
+     * @type {String}
+     * @private
+     */
     #file;
+
     /**
     * Creates an instance of product_loader.
     * @param {String} Path_to_file Path to file which is filled with json string
@@ -9,11 +15,14 @@ export class ProductLoader {
         this.#file = Path_to_file;
     }
 
+    /**
+     * Reads the file from the given path.
+     * @return {String} The content of the file as a string.
+     */
     async #read_file(){ 
         try {
             const res = await fetch(this.#file);
             const text = await res.text();
-            console.log("Text here - " + text);
             return text;
         } catch (e) {
             console.error(e);
@@ -34,11 +43,9 @@ export class ProductLoader {
             parsed_json = JSON.parse(file_filling);
         }
         catch (catchedError){
-            console.warn("Parsing error: " + catchedError + ". the pre_defined value will be return");
+            console.warn("Parsing error: " + catchedError);
             throw catchedError;
         }
         return parsed_json;
     }
 }
-
-//export default ProductLoader;

@@ -1,7 +1,10 @@
-import ReceiptManager from "./receipt.js";
-
 const buy_button_query_class = "buybutton"; 
 const buy_input_query_class = "buyinput"; 
+
+/**
+ * A product that can be bought.
+ * @class
+ */
 export class Product {
     /**
      * A receipt manager, that will handle the money and buying
@@ -9,13 +12,60 @@ export class Product {
      * @private
      */
     #Receipt;
+    /**
+     * The id of the product.
+     * @type {int}
+     * @private
+     */
     #id;
+    /**
+     * The name of the product.
+     * @type {String}
+     * @private
+     */
     #name;
+    /**
+     * The description of the product.
+     * @type {String}
+     * @private
+     */
     #description;
+    /**
+     * The price of the product.
+     * @type {int}
+     * @private
+     */
     #price;
-    #maxAmount = -1; // -1 means no limit
+    /**
+     * The maximum amount of the product that can be bought. -1 means no limit.
+     * @type {int}
+     * @private
+     */
+    #maxAmount;
+    /**
+     * The html element of the product.
+     * @type {HTMLElement}
+     * @private
+     */
     #HtmlElement;
-    #boughtAmount = 0;
+    /**
+     * The amount of the product that has been bought.
+     * @type {int}
+     * @private
+     */
+    #boughtAmount;
+    /**
+     * The input field of the product.
+     * @type {HTMLInputElement}
+     * @private
+     */
+    #input;
+    /**
+     * The buy button of the product.
+     * @type {HTMLButtonElement}
+     * @private
+     */
+    #button;
 
     /**
      * Creates an instance of Product.
@@ -27,33 +77,44 @@ export class Product {
         this.#id = jsonOfProduct.id;
         this.#name = jsonOfProduct.name;
         this.#description = jsonOfProduct.description;
-        this.#price = jsonOfProduct.price; 
+        this.#price = jsonOfProduct.cost; 
         this.#maxAmount = jsonOfProduct.max_amount;
         this.#HtmlElement = HtmlElement;
+        this.#boughtAmount = 0;
     }
 
+    /**
+     * Updates the input field to reflect the current bought amount.
+     * @return {null} Nothing
+     */
     #updateInput() {
-        input.value = this.#boughtAmount;
+        this.#input.value = this.#boughtAmount;
     }
 
+    /**
+     * Callback Handles the event when the buy button is clicked.
+     * @return {null} Nothing
+     */
     #OnBuyButton() {
-            console.warn("Little serializer is not done");
-            // make a serializer with product_manager
-            const goal_amount = this.#boughtAmount + 1;
-            if (this.#maxAmount == -1 || this.#maxAmount > goal_amount) {
+            const goal_amount = parseInt(this.#boughtAmount) + 1;
+            if ((this.#maxAmount == -1 || this.#maxAmount >= goal_amount) && goal_amount >= 0) {
                 const transaction_response = this.#Receipt.buy(this, goal_amount);
                 if (transaction_response){
                     this.#boughtAmount = goal_amount;
                     this.#updateInput();
                 }
             }
+            else {
+                this.#input.value = this.#boughtAmount;
+            }
     }
-
+    /**
+     * Callback Handles the event when the input field is changed.
+     * @return {null} Nothing
+     */
     #OnBuyInput() {
-            console.warn("Little serializer is not done");
-            // make a serializer with product_manager
-            const goal_amount = input.value;
-            if (this.#maxAmount == -1 || this.#maxAmount > input.value){
+            const goal_amount = this.#input.value;
+            if ((this.#maxAmount == -1 || this.#maxAmount >= goal_amount) && goal_amount >= 0){
                 const transaction_response = this.#Receipt.buy(this, goal_amount);
                 if (transaction_response) {
                     this.#boughtAmount = goal_amount;
@@ -63,7 +124,7 @@ export class Product {
                 }
             }
             else {
-                input.value = this.#maxAmount;
+                this.#input.value = this.#boughtAmount;
             }
     }
 
@@ -79,17 +140,20 @@ export class Product {
         return this.#price;
     }
 
+    /**
+     * Connects the product with a receipt manager to handle buying and money.
+     * @param {ReceiptManager} Receipt The receipt that will handle the money and buying
+     * @return {null} Nothing
+     */
     connectButtons(Receipt){
-        if (this.#Receipt) console.error("Error: Receipt is already connected");
-        if (!Receipt) console.error("Error: Receipt was not recieved. The receipt itself - " + Receipt);
+        if (this.#Receipt) { console.error("Error: Receipt is already connected"); return; }
+        if (!Receipt) { console.error("Error: Receipt was not recieved. The receipt itself - " + Receipt); return; }
         this.#Receipt = Receipt;
 
-        let button = this.#HtmlElement.getElementsByClassName(buy_button_query_class)[0];
-        let input = this.#HtmlElement.getElementsByClassName(buy_input_query_class)[0];
+        this.#button = this.#HtmlElement.getElementsByClassName(buy_button_query_class)[0];
+        this.#input = this.#HtmlElement.getElementsByClassName(buy_input_query_class)[0];
 
-        button.addEventListener("click", this.#OnBuyButton);
-        input.addEventListener("change", this.#OnBuyInput);
+        this.#button.addEventListener("click", this.#OnBuyButton.bind(this)); // .bind(this) - does the context saving
+        this.#input.addEventListener("change", this.#OnBuyInput.bind(this)); // .bind(this) - does the context saving
     }
 }
-
-//export default Product;
