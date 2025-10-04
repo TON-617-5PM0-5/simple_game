@@ -17,6 +17,11 @@ class HtmlController {
      * @type {HTMLElement}
      */
     moneyLabel;
+    /**
+     * Container for receipt table
+     * @type {HTMLElement}
+     */
+    receiptContainer;
 
     /**
      * Creates a singleton of HtmlController.
@@ -27,6 +32,7 @@ class HtmlController {
             HtmlController.instance = this;
             this.buildingContainer = document.getElementById(card_container_query_id);
             this.moneyLabel = document.getElementById(money_label_query_id);
+            this.receiptContainer = document.getElementById(receipt_table_query_id);
         }
         return HtmlController.instance
     }
@@ -82,8 +88,18 @@ class HtmlController {
         this.moneyLabel.innerHTML = result;
     }
 
-    drawReceipt(Text){
-
+    /**
+     * redraws the receipt in the end of the page
+     * @param {{name: string, total_price: int, amount: int}[]} check according to check Receipt will be drawn
+     * @return {null} Nothing 
+     */
+    drawReceipt(check){
+        let result = "";
+        check.forEach((item, index) => {
+            let line = "<label>" + item.name + " " + item.amount + "x - " + item.total_price + "$</label><br>";
+            result += line;
+        });
+        this.receiptContainer.innerHTML = result;
     }
 }
 //singleton

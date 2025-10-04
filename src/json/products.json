@@ -18,6 +18,174 @@
         },
         {
             "id": 3,
+            "name": "Ticket for a film",
+            "description": "1 ticket for a film, I hope it is not a soap drama.",
+            "image": "film_ticket.jpg",
+            "cost": 12,
+            "max_amount": -1
+        },
+        {
+            "id": 4,
+            "name": "Book",
+            "description": "Book. this thing should make your knowledge bigger.",
+            "image": "book.jpg",
+            "cost": 20,
+            "max_amount": -1
+        },
+        {
+            "id": 5,
+            "name": "T-shirt",
+            "description": "in summer - good, in winter - under the hood!",
+            "image": "tshirt.jpg",
+            "cost": 25,
+            "max_amount": -1
+        },
+        {
+            "id": 6,
+            "name": "Video game",
+            "description": "the average AAA game on steam costs 60$ and indie games costs about 20$. so this one is average between AAA game and indie, such a indAA",
+            "image": "video_game.png",
+            "cost": 35,
+            "max_amount": -1
+        },
+        {
+            "id": 7,
+            "name": "Gym membership for 1 month",
+            "description": "Maybe I could go to the gym, instead of writing all this products.",
+            "image": "gymmship.webp",
+            "cost": 40,
+            "max_amount": -1
+        },
+        {
+            "id": 8,
+            "name": "Sunglasses",
+            "description": "Help to look better or protect your eyes from a sun, pretty fragile!",
+            "image": "sunglasses.webp",
+            "cost": 100,
+            "max_amount": -1
+        },
+        {
+            "id": 9,
+            "name": "Headphones",
+            "description": "Really good apple headphones. price 200$ is kinda big, don't you think so?",
+            "image": "headphones.webp",
+            "cost": 200,
+            "max_amount": -1
+        },
+        {
+            "id": 10,
+            "name": "Smartwatch",
+            "description": "Great, now you can track your life status and heartbeat and the most important The time",
+            "image": "smartwatch.webp",
+            "cost": 400,
+            "max_amount": -1
+        },
+        {
+            "id": 11,
+            "name": "Gaming console",
+            "description": "You can play games you bought earlier with this one!",
+            "image": "playstation.jpeg",
+            "cost": 599,
+            "max_amount": -1
+        },
+        {
+            "id": 12,
+            "name": "Iphone",
+            "description": "Pretty good phone, buy only one, you will have to do it again next year...",
+            "image": "iphone.webp",
+            "cost": 1200,
+            "max_amount": -1
+        },
+        {
+            "id": 13,
+            "name": "Drone",
+            "description": "Flying camera, you can take a picture of your city from the birds point of view, Beautiful!",
+            "image": "drone.avif",
+            "cost": 1500,
+            "max_amount": -1
+        },
+        {
+            "id": 14,
+            "name": "good Laptop",
+            "description": "Pretty good, it has new components, such as RTX 5090 and intel core I9-14900KF",
+            "image": "laptop.jpg",
+            "cost": 1999,
+            "max_amount": -1
+        },
+        {
+            "id": 15,
+            "name": "Camera",
+            "description": "Professional camera, Better than Iphones one!",
+            "image": "camera.png",
+            "cost": 2000,
+            "max_amount": -1
+        },
+        {
+            "id": 16,
+            "name": "designer Handbag",
+            "description": "It is just a money into the garbage, WHY it cost 3k$",
+            "image": "handbag.webp",
+            "cost": 3000,
+            "max_amount": -1
+        },
+        {
+            "id": 17,
+            "name": "4k 98'' Neo QLED Samsung Smart TV",
+            "description": "I think it is pretty thin tv, but the name is too big",
+            "image": "tv.avif",
+            "cost": 8799,
+            "max_amount": -1
+        },
+        {
+            "id": 18,
+            "name": "Used car",
+            "description": "Accident-free, original paint - I don't know is this true or not, but it is pretty cheap!",
+            "image": "usedcar.webp",
+            "cost": 10000,
+            "max_amount": -1
+        },
+        {
+            "id": 19,
+            "name": "Tesla model 3",
+            "description": "Good car with AI driver, but don't sleep when driving - it is illegal",
+            "image": "teslacar.webp",
+            "cost": 40000,
+            "max_amount": -1
+        },
+        {
+            "id": 20,
+            "name": "Ferrari",
+            "description": "Yearly bills will cost more than the car itself",
+            "image": "ferrari.webp",
+            "cost": 250000,
+            "max_amount": -1
+        },
+        {
+            "id": 21,
+            "name": "Lamborghini Aventador",
+            "description": "Really fast, but it is not for race , it is for your status",
+            "image": "lamba.webp",
+            "cost": 500000,
+            "max_amount": -1
+        },
+        {
+            "id": 22,
+            "name": "luxury camper van",
+            "description": "Travelling home, you can travel and your home will be near you",
+            "image": "",
+            "cost": 3000000,
+            "max_amount": -1
+        },
+        {
+            "id": 22,
+            "name": "Small private jet",
+            "description": "Pilot not included, so you cannot use it yourself",
+            "image": "spj.webp",
+            "cost": 3000000,
+            "max_amount": -1
+        },
+        {
+            "id": 23,
             "name": "A manison",
             "description": "A house, but big. I can count it's rooms!",
             "image": "mansion.jpg",
@@ -25,7 +193,7 @@
             "max_amount": -1
         },
         {
-            "id": 4,
+            "id": 24,
             "name": "Ceres",
             "description": "Yeah, it is a planet, one of the most cheapest from known dwarf planets. Really little, but c'mon, it is your own planet!",
             "image": "ceres.jpg",

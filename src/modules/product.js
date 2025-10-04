@@ -102,6 +102,7 @@ export class Product {
                 if (transaction_response){
                     this.#boughtAmount = goal_amount;
                     this.#updateInput();
+                    this.#Receipt.reDrawReceipt();
                 }
             }
             else {
@@ -118,6 +119,7 @@ export class Product {
                 const transaction_response = this.#Receipt.buy(this, goal_amount);
                 if (transaction_response) {
                     this.#boughtAmount = goal_amount;
+                    this.#Receipt.reDrawReceipt();
                 }
                 else {
                     this.#updateInput();
@@ -126,6 +128,10 @@ export class Product {
             else {
                 this.#input.value = this.#boughtAmount;
             }
+    }
+
+    getName (){
+        return this.#name;
     }
 
     getBoughtAmount(){

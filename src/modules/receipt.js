@@ -59,8 +59,25 @@ class ReceiptManager {
         this.#HtmlController.showMoney(this.#money);
     }
 
-    drawReceipt(){
-        
+    getCheck(){
+        const check = [];
+        this.#products.forEach((item, index) => {
+            if (item.getBoughtAmount() == 0) {
+                return;
+            }
+            const object = {};
+            object.name = item.getName();
+            object.total_price = item.getCost() * item.getBoughtAmount();
+            object.amount = item.getBoughtAmount();
+            console.log("obj ", object);
+            check.push(object);
+        })
+        console.log(check);
+        return check;
+    }
+
+    reDrawReceipt() {
+        this.#HtmlController.drawReceipt(this.getCheck());
     }
 }
 
